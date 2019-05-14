@@ -1,29 +1,6 @@
 import time
 from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister, execute, BasicAer
 
-
-def randomNum():
-    num = ''
-    max = 5
-    for i in range(max):
-        q = QuantumRegister(1)
-        c = ClassicalRegister(1)
-        qc = QuantumCircuit(q, c)
-        backend = BasicAer.get_backend('qasm_simulator')
-
-        qc.h(q[0])
-        qc.measure(q, c)
-        result = execute(qc, backend, shots=10).result()
-        count = result.get_counts(qc)
-        k = count.keys()
-        if '0' in count.keys():
-            num += '0'
-        else:
-            num += '1'
-
-    print(num)
-    print(int(num, 2))
-
 def hitman_game():
     print(" Welcome to the what hitman move game ????")
     hitman = input("Enter your hitman qubit number (1-5): ")
