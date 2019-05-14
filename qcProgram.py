@@ -27,14 +27,14 @@ def randomNum():
 def hitman_game():
     print(" Welcome to the what hitman move game ????")
     hitman = input("Enter your hitman qubit number (1-5): ")
-    while hitman < 1 or hitman > 5:
+    while int(hitman) < 1 or int(hitman) > 5:
         print('Not a valid input')
         hitman = input("Enter your hitman qubit number (1-5): ")
     #hitman = 2
     hitman = int(hitman) - 1
 
     you = input('Enter your qubit number (1-5 but not same as hitman): ')
-    while you - 1 == hitman or you < 0 or you > 5:
+    while int(you) - 1 == hitman or int(you) < 0 or int(you) > 5:
         print('Not a valid input')
         you = input('Enter your qubit number (1-5 but not same as hitman): ')
     you = int(you) - 1
@@ -59,13 +59,9 @@ def hitman_game():
     qc.cx(q[hitman], q[you]) #entagglement
     qc.h(q[you])
     qc.measure(q,c)
-    print(qc)
     result = execute(qc, backend, shots=1000).result()
     count = result.get_counts(qc)
     outcome = max(count, key=count.get)
-
-    print(count)
-
     print("The hitman is shooting...")
     time.sleep(1)
 
